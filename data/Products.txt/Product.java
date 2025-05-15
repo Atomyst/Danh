@@ -28,7 +28,8 @@ public class Product {
         this.proDiscount = 0.0;
         this.proLikesCOunt = 0;
     }
-    @Overridepublic String toString() {
+    @Override
+    public String toString() {
         return String.format("{\"proID\":\"%s\", \"proModel\":\"%s\", \"proCategory\":\"%s\", \"proName\":\"%s\", \"proCurrentPrice\":%.2f, \"proRawPrice\":\"%s\", \"proDiscount\":%.2f, \"proLikesCOunt\":%d}", 
             this.proID, this.proModel, this.proCategory, this.proName, this.proCurrentPrice, this.proRawPrice, this.proDiscount, this.proLikesCOunt);
     }
