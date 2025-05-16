@@ -25,16 +25,17 @@ public abstract class User{
         this.userName = "Default User";
         this.userPassword = encryptPassword("defaultPassword");
         this.userRegisterTime = getCurrentFormattedTime();
-        this.userRole = "Customer";
+        this.userRole = "ccustomer";
     }
     private String encryptPassword(String password) {
         return new StringBuilder(password).reverse().toString();
     }
     private String generateUniqueUserID(){
-        return "u_" + System.currentTimeMillis();
+        long time = System.currentTimeMillis() % 10000000000L;
+        return String.format("u_%10d", time);
     }
     private String getCurrentFormattedTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:,,:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:ss");
         return LocalDateTime.now().format(formatter);      
     }
     public String getUserID() {
@@ -51,6 +52,11 @@ public abstract class User{
     }
     public String getUserRole() {
         return userRole;
+    }
+    @Override 
+    public String toString() {
+        return String.format("{\"userID\":\"%s\", \"userName\":\"%s\", \"userPassword\":\"%s\", \"userRegisterTime\":\"%s\", \"userRole\":\"%s\"}", 
+            this.userID, this.userName, this.userPassword, this.userRegisterTime, this.userRole);
     }
     
 }
