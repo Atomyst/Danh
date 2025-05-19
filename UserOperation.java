@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class UserOperation {
     private static UserOperation instance;
-    private Map<String, User> userDatabase; 
+    private final Map<String, User> userDatabase; 
 
     private static final Pattern USERNAME_PATTERN = Pattern.compile("^[a-zA-Z_]{5,}$");
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d).{5,}$");

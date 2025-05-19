@@ -1,36 +1,38 @@
 public class Product {
-    private String proID;
+    private String proId;
     private String proModel;
     private String proCategory;
     private String proName;
     private double proCurrentPrice;
-    private String proRawPrice;
+    private double proRawPrice;
     private double proDiscount;
-    private int proLikesCOunt;
+    private int proLikesCount;
 
-    public Product(String proID, String proModel, String proCategory, String proName, double proCurrentPrice, String proRawPrice, double proDiscount, int proLikesCOunt) {
-        this.proID = proID;
+    public Product(String proId, String proModel, String proCategory, String proName,
+                   double proCurrentPrice, double proRawPrice, double proDiscount, int proLikesCount) {
+        this.proId = proId;
         this.proModel = proModel;
         this.proCategory = proCategory;
         this.proName = proName;
         this.proCurrentPrice = proCurrentPrice;
         this.proRawPrice = proRawPrice;
         this.proDiscount = proDiscount;
-        this.proLikesCOunt = proLikesCOunt;
+        this.proLikesCount = proLikesCount;
     }
-    public Product() {
-        this.proID = "defaultID";
-        this.proModel = "Default Model";
-        this.proCategory = "Default Category";
-        this.proName = "Default Name";
-        this.proCurrentPrice = 0.0;
-        this.proRawPrice = "0.0";
-        this.proDiscount = 0.0;
-        this.proLikesCOunt = 0;
-    }
+
+
+    public String getProId() { return proId; }
+    public String getProModel() { return proModel; }
+    public String getProCategory() { return proCategory; }
+    public String getProName() { return proName; }
+    public double getProCurrentPrice() { return proCurrentPrice; }
+    public double getProRawPrice() { return proRawPrice; }
+    public double getProDiscount() { return proDiscount; }
+    public int getProLikesCount() { return proLikesCount; }
+
     @Override
     public String toString() {
-        return String.format("{\"proID\":\"%s\", \"proModel\":\"%s\", \"proCategory\":\"%s\", \"proName\":\"%s\", \"proCurrentPrice\":%.2f, \"proRawPrice\":\"%s\", \"proDiscount\":%.2f, \"proLikesCOunt\":%d}", 
-            this.proID, this.proModel, this.proCategory, this.proName, this.proCurrentPrice, this.proRawPrice, this.proDiscount, this.proLikesCOunt);
+        return String.format("Product: %s (%s) - %s | Price: $%.2f | Likes: %d",
+                proId, proModel, proName, proCurrentPrice, proLikesCount);
     }
 }

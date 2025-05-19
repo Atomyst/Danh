@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class CustomerOperation {
     private static CustomerOperation instance;
-    private List<Customer> customerDatabase = new ArrayList<>();
+    private final List<Customer> customerDatabase = new ArrayList<>();
     
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^(04|03)\\d{8}$");
@@ -26,7 +26,7 @@ public class CustomerOperation {
         return MOBILE_PATTERN.matcher(userMobile).matches();
     }
     public boolean registerCustomer(String userName, String userPassword, String userEmail, String userMobile) {
-        // Use UserOperation's validation methods
+
         if (!UserOperation.getInstance().validateUsername(userName) || 
             !UserOperation.getInstance().validatePassword(userPassword) || 
             !validateEmail(userEmail) || !validateMobile(userMobile)) {
@@ -42,22 +42,23 @@ public class CustomerOperation {
     }
 
     public boolean updateProfile(String attributeName, String value, Customer customerObject) {
-        switch (attributeName.toLowerCase()) {
-            case "email":
-                if (!validateEmail(value)) return false;
+        return switch (attributeName.toLowerCase()) {
+            case "email" -> {
+                if (!validateEmail(value)) yield false;
                 customerObject.setUserEmail(value);
-                return true;
-            case "mobile":
-                if (!validateMobile(value)) return false;
+                yield true;
+            }
+            case "mobile" -> {
+                if (!validateMobile(value)) yield false;
                 customerObject.setUserMobile(value);
-                return true;
-            default:
-                return false;
-        }
+                yield true;
+            }
+            default -> false;
+        };
     }
 
-    public boolean deleteCustomer(String customerId) {
-        return customerDatabase.removeIf(c -> c.getUserID().equals(customerId));
+    public boolean deleteCustomer(String UserID) {
+        return customerDatabase.removeIf(c -> c.getUserID().equals(UserID));
     }
 
     public CustomerListResult getCustomerList(int pageNumber) {
@@ -78,9 +79,9 @@ public class CustomerOperation {
         return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm:ss"));
     }
 public class CustomerListResult {
-    private List<Customer> customerList;
-    private int currentPage;
-    private int totalPages;
+    private final List<Customer> customerList;
+    private final int currentPage;
+    private final int totalPages;
 
     public CustomerListResult(List<Customer> customerList, int currentPage, int totalPages) {
         this.customerList = customerList;

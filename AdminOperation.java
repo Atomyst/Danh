@@ -1,5 +1,5 @@
 public class AdminOperation {
-    private static AdminOperation instance; // Singleton instance
+    private static AdminOperation instance;
     private boolean isAdminRegistered = false;
 
     private AdminOperation() {}
