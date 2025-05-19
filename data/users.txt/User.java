@@ -25,7 +25,7 @@ public abstract class User{
         this.userName = "Default User";
         this.userPassword = encryptPassword("defaultPassword");
         this.userRegisterTime = getCurrentFormattedTime();
-        this.userRole = "ccustomer";
+        this.userRole = "customer";
     }
     private String encryptPassword(String password) {
         return new StringBuilder(password).reverse().toString();
@@ -53,6 +53,13 @@ public abstract class User{
     public String getUserRole() {
         return userRole;
     }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public void setUserPassword(String userPassword) {
+        this.userPassword = encryptPassword(userPassword);
+    }
+    
     @Override 
     public String toString() {
         return String.format("{\"userID\":\"%s\", \"userName\":\"%s\", \"userPassword\":\"%s\", \"userRegisterTime\":\"%s\", \"userRole\":\"%s\"}", 
