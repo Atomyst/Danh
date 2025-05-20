@@ -1,6 +1,9 @@
+package data.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import UserOperation;
 
 public class CustomerOperation {
     private static CustomerOperation instance;

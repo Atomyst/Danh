@@ -1,3 +1,6 @@
+import UserOperation;
+
+package data.Test;
 public class AdminOperation {
     private static AdminOperation instance;
     private boolean isAdminRegistered = false;

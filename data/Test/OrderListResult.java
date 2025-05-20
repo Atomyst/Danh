@@ -1,4 +1,7 @@
+package data.Test;
 import java.util.List;
+
+import Order;
 
 public class OrderListResult {
     private List<Order> orders;

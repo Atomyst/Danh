@@ -1,3 +1,4 @@
+package data.Test;
 import java.util.List;
 public class ProductListResult {
     private List<Product> productList;

@@ -1,3 +1,4 @@
+import data.Test.OrderListResult;
 import java.io.*;
 import java.nio.file.*;
 import java.time.LocalDateTime;
@@ -24,11 +25,11 @@ public class OrderOperation {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(ORDER_FILE_PATH, true))) {
         for (int i = 1; i <= 10; i++) {
             String customerId = "CUST_" + i;
-            int numOrders = (int) (Math.random() * 150) + 50; // Between 50-200 orders
+            int numOrders = (int) (Math.random() * 150) + 50; 
             
             for (int j = 0; j < numOrders; j++) {
                 String orderId = generateUniqueOrderId();
-                String productId = "PROD_" + (int) (Math.random() * 100); // Random product ID
+                String productId = "PROD_" + (int) (Math.random() * 100); 
                 String orderTime = generateRandomOrderTime();
 
                 String orderEntry = orderId + "," + customerId + "," + productId + "," + orderTime;
@@ -42,7 +43,7 @@ public class OrderOperation {
     }
 }
     public void generateSingleCustomerConsumptionFigure(String customerId) {
-    Map<String, Double> monthlyConsumption = new TreeMap<>(); // Sorted by month
+    Map<String, Double> monthlyConsumption = new TreeMap<>();
 
     try {
         List<String> orders = Files.readAllLines(Paths.get(ORDER_FILE_PATH));
@@ -50,8 +51,8 @@ public class OrderOperation {
         for (String order : orders) {
             String[] data = order.split(",");
             if (data[1].equals(customerId)) {
-                String month = data[3].substring(3, 10); // Extract "MM-yyyy"
-                double price = Math.random() * 100 + 10; // Simulated order price
+                String month = data[3].substring(3, 10); 
+                double price = Math.random() * 100 + 10;
                 monthlyConsumption.put(month, monthlyConsumption.getOrDefault(month, 0.0) + price);
             }
         }
